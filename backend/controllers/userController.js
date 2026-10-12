@@ -57,7 +57,7 @@ export async function registerUser(req, res) {
 }
 
 //login as a user
-export async function loginUser(req, res) {
+export async function   loginUser(req, res) {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({
