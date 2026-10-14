@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import dotenv from "dotenv";
 import 'dotenv/config';
 import { connectDB } from './config/db.js';
 
@@ -10,7 +11,8 @@ import dashboardRouter from './routes/dashboardRoute.js';
 
 const app = express();
 
-const PORT = 4000;
+const PORT = process.env.PORT;
+dotenv.config();
 
 //middleware
 app.use(cors());

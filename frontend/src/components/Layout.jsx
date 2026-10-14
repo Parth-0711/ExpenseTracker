@@ -26,7 +26,7 @@ import {
 import axios from "axios";
 import { Outlet } from "react-router-dom";
 
-const API_BASE = "http://localhost:4000/api";
+const API_BASE = `${import.meta.env.VITE_API_URL}/api`;
 const CATEGORY_ICONS = {
   Food: <Utensils className="w-4 h-4" />,
   Housing: <Home className="w-4 h-4" />,
@@ -83,7 +83,8 @@ const Layout = ({ onLogout, user }) => {
   const fetchTransactions = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token")||
+  sessionStorage.getItem("token");
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
       const [incomeRes, expenseRes] = await Promise.all([
@@ -127,7 +128,8 @@ const Layout = ({ onLogout, user }) => {
   //to add either income or expense
   const addTransaction = async (transaction) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token")||
+  sessionStorage.getItem("token");
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
       const endpoint =
         transaction.type === "income" ? "income/add" : "expense/add";
@@ -147,7 +149,8 @@ const Layout = ({ onLogout, user }) => {
 
   const editTransaction = async (id, transaction) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token")||
+  sessionStorage.getItem("token");
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
       const endpoint =
         transaction.type === "income" ? "income/update" : "expense/update";
@@ -169,7 +172,8 @@ const Layout = ({ onLogout, user }) => {
 
   const deleteTransaction = async (id, type) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token")||
+  sessionStorage.getItem("token");
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
       const endpoint = type === "income" ? "income/delete" : "expense/delete";
       await axios.delete(`${API_BASE}/${endpoint}/${id}`, { headers });
