@@ -466,7 +466,7 @@ const Dashboard = () => {
             </div>
           }
           label={`${timeFrameRange.label} Expenses`}
-          value={`${Math.round(displayIncome - displayExpenses).toLocaleString()}`}
+          value={`${Math.round(displayExpenses).toLocaleString()}`}
           additionalContent={
             <div
               className={`mt-2 text-xs flex items-center gap-1 ${
